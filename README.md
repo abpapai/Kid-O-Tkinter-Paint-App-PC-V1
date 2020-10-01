@@ -6,6 +6,9 @@ Requirements:
 2.Some python modules:-
    tkinter(GUI)
    PIL(pillow)
-   image
+   image,imageGrab,imageTk
+   colorchooser
+   filedialog
+   messagebox
 3.Python API(in-built in Subime Text)
 
