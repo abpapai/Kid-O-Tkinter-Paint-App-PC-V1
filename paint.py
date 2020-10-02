@@ -1,6 +1,7 @@
 from tkinter import *
+
 from PIL import Image, ImageDraw, ImageGrab, ImageTk
-import PIL
+
 import tkinter.ttk as ttk
 from tkinter import colorchooser
 from tkinter import filedialog
@@ -8,10 +9,10 @@ from tkinter import messagebox
 
 root = Tk()
 root.title('Paint Digitaly')
-root.iconbitmap('c:/paint/Kid-O-Tkinter.ico')
+root.iconbitmap('Kid-O-Tkinter.ico')
 root.geometry("1000x1000")
 root.config(bg="#D3D3D3")
-root.minsize(1000,980)
+root.minsize(500,500)
 
 brush_color = "black"
 def paint(e):
@@ -80,8 +81,8 @@ def save_as_png():
     messagebox.showinfo("Image Saved", "Your Image Has Been Saved!")
 
 # Create Our Canvas
-w=900
-h=720
+w=500
+h=200
 my_canvas= Canvas(root, width=w, height=h, bg="white", borderwidth=2)
 my_canvas.pack(pady=20)
 
@@ -145,11 +146,20 @@ clear_button.pack(padx=10, pady=10)
 save_image_button = Button(options_frame, text="Save To PNG", command= save_as_png, font=('Helvetica',8,'italic','bold'))
 save_image_button.pack(padx=10, pady=10)
 
-# Exit button 
+# Exit button
 button_quit = Button(options_frame, text="Exit Program", command= root.quit, font=('Helvetica',8,'italic','bold'))
 button_quit.pack(padx=10, pady=10)
 
+#open Existing image
+def UploadAction(event=None):
+    filename = filedialog.askopenfilename()
+    imagetest = PhotoImage(file=f'{filename}')
+    my_canvas.create_image(500, 200, image=imagetest)
+    root.mainloop()
+    print('Selected:', filename)
 
+open = Button(options_frame, text="Open Existing File",command=UploadAction,font=('Helvetica',8,'italic','bold'))
+open.pack(padx=10, pady=10)
 root.mainloop()
 
 
