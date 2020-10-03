@@ -79,6 +79,15 @@ def save_as_png():
     
     # Pop Up Sucess Message
     messagebox.showinfo("Image Saved", "Your Image Has Been Saved!")
+    
+
+#Drag and Drop
+def move(e):
+    try:
+        my_canvas.create_image(e.x, e.y, image=imagetest)
+    except:
+        pass
+    
 
 # Create Our Canvas
 w=500
@@ -90,6 +99,7 @@ my_canvas.pack(pady=20)
 #my_canvas.create_line(150, 0, 150, 200, fill="yellow" )
 
 my_canvas.bind('<B1-Motion>',paint)
+my_canvas.bind('<B3-Motion>', move)
 
 # Create Brush Options Frame
 brush_options_frame = Frame(root)
@@ -152,10 +162,10 @@ button_quit.pack(padx=10, pady=10)
 
 #open Existing image
 def UploadAction(event=None):
+    global imagetest
     filename = filedialog.askopenfilename()
     imagetest = PhotoImage(file=f'{filename}')
     my_canvas.create_image(500, 200, image=imagetest)
-    root.mainloop()
     print('Selected:', filename)
 
 open = Button(options_frame, text="Open Existing File",command=UploadAction,font=('Helvetica',8,'italic','bold'))
